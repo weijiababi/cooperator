@@ -1,34 +1,5 @@
-import axios from 'axios';
-import env from '../../build/env';
-const currentHost = location.host;
-console.log(env)
-const host =  env === 'development'
-    ?'http://10.10.10.166:8011'
-    :currentHost === 'beta.admin.moscales.com'
-    ?'http://beta.admin.moscales.com'
-    :'http://moscales.7wenyi.com';
 
-const api = host + '/backend';
-const $http = axios.create({
-    baseURL: api,
-    timeout: 30000,
-    withCredentials: true
-});
-
-
-// $http.interceptors.request.use(config => {
-
-// 	return config;
-// })
-
-// $http.interceptors.response.use(res => {
-
-// 	return res;
-// }, err => {
-
-// 	return Promise.reject(err);
-// });
-
+import $http from './config'
 /* 
 	 系统管理
 */ 

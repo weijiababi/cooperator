@@ -1,32 +1,31 @@
 <style lang="less">
 	@import '../../styles/pagination';	
-	@import '../../styles/common';	
 </style>
 <template>
-	<Card>
-		<Row >
-			<div>
-				<Button icon="plus" type="default" @click="onAdd" >添加员工</Button>
-			</div>
-		</Row>
-		<Card class="margin-top-10">
-			<Row>
+	<div>
+		<Card class="margin-top-10" >
+			<Row >
+				<Col span="18" >
+					<div>
+						<Button icon="plus" type="default" @click="onAdd" >添加员工</Button>
+					</div>
+				</Col>
 				<Col span="5">
 					<Input v-model="key.name" placeholder="员工名字" />
 				</Col>
-				<Col span="3">
+				<Col span="1">
 					<Button icon="ios-search" @click="onSearch" title="搜索"></Button>
 				</Col>
 			</Row>
 			<Row class="margin-top-10">
-			<Spin fix v-show="loading"></Spin>
-      <Table stripe ref="employeeTable" :columns="columns" :data="employees" border disabled-hover></Table>
-			<div class="pagi-wrapper">
-				<div class="pagination">
-            <Page :total="total" :page-size="pageSize" :current="currentPage" @on-change="onChangePage" show-total></Page>
-        </div>
-	  	</div>
-	  </Row>
+				<Spin fix v-show="loading"></Spin>
+	      <Table stripe ref="employeeTable" :columns="columns" :data="employees" border disabled-hover></Table>
+				<div class="pagi-wrapper">
+					<div class="pagination">
+	            <Page :total="total" :page-size="pageSize" :current="currentPage" @on-change="onChangePage" show-total></Page>
+	        </div>
+		  	</div>
+		  </Row>
     </Card>
 		
 		<Modal :title="actionText" v-model="actionModal" class-name="vertical-center-modal">
@@ -85,7 +84,7 @@
 		  </div>
     </Modal>
 	
-	</Card>
+	</div>
 </template>
 
 <script>
@@ -230,13 +229,10 @@ export default {
 			api.getEmployees(params).then(res=>{
 				console.log(res)
 				this.loading = false
-				if(res.code == 200){
-					this.total = res.data.total
-					this.employees = res.data.data
-				}else{
-					this.$Message.error(res.msg);
+				if(res){
+					this.total = res.total
+					this.employees = res.data
 				}
-				
 			})
 		},
 		//切换员工列表页码
@@ -298,14 +294,11 @@ export default {
  			api.addEmployee(params).then(res=>{
  				console.log(res)
  				this.actionLoading = false
- 				if(res.code == 200){
+ 				if(res){
  					this.$Message.success('添加成功');
  					this.actionModal = false
  					this.currentPage = 1
  					this.getEmployees()
- 				}else{
- 					this.$Message.error(res.msg);
- 					return
  				}
  			})
  		},
@@ -315,14 +308,11 @@ export default {
  			api.editEmployee(params).then(res=>{
  				console.log(res)
  				this.actionLoading = false
- 				if(res.code == 200){
+ 				if(res){
  					this.$Message.success('编辑成功');
  					this.actionModal = false
  					this.currentPage = 1
  					this.getEmployees()
- 				}else{
- 					this.$Message.error(res.msg);
- 					return
  				}
  			})
  		},
@@ -336,11 +326,9 @@ export default {
 			api.getEmployees(params).then(res=>{
 				console.log(res)
 				this.leaderLoading = false
-				if(res.code == 200){
-					this.leaderTotal = res.data.total
-					this.leaders = res.data.data
-				}else{
-					this.$Message.error(res.msg);
+				if(res){
+					this.leaderTotal = res.total
+					this.leaders = res.data
 				}
 			})
 		},
@@ -374,11 +362,9 @@ export default {
 			api.getUsers(params).then(res=>{
 				console.log(res)
 				this.accountLoading = false
-				if(res.code == 200){
-					this.accountTotal = res.data.total
-					this.accounts = res.data.data
-				}else{
-					this.$Message.error(res.msg);
+				if(res){
+					this.accountTotal = res.total
+					this.accounts = res.data
 				}
 			})
 		},
@@ -434,13 +420,10 @@ export default {
 			api.delEmployee(params).then(res=>{
  				console.log(res)
  				this.loading = false
- 				if(res.code == 200){
+ 				if(res){
  					this.$Message.success('删除成功');
  					this.currentPage = 1
  					this.getEmployees()
- 				}else{
- 					this.$Message.error(res.msg);
- 					return
  				}
  			})
 		},
