@@ -1,6 +1,7 @@
 <style lang="less">
     @import "./main.less";
     @import '../styles/common';  
+    @import '../styles/pagination';  
 </style>
 <template>
     <div class="main" :class="{'main-hide-text': shrink}">
@@ -14,8 +15,7 @@
                     :open-names="openedSubmenuArr"
                     :menu-list="menuList">
                     <div slot="top" class="logo-con">
-                        <img v-show="!shrink"  src="../images/logo.jpg" key="max-logo" />
-                        <img v-show="shrink" src="../images/logo-min.jpg" key="min-logo" />
+                        摩秤系统
                     </div>
                 </shrinkable-menu>
             </scroll-bar>

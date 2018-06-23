@@ -1,23 +1,13 @@
 <style lang="less">
-	@import '../../styles/pagination';	
+
 </style>
 <template>
 	<div>
-		<Card class="margin-top-10" >
-			<Row >
-				<Col span="18" >
-					<div>
-						<Button icon="plus" type="default" @click="onAdd" >添加员工</Button>
-					</div>
-				</Col>
-				<Col span="5">
-					<Input v-model="key.name" placeholder="员工名字" />
-				</Col>
-				<Col span="1">
-					<Button icon="ios-search" @click="onSearch" title="搜索"></Button>
-				</Col>
-			</Row>
-			<Row class="margin-top-10">
+		<Card class="margin-top-16" >
+			<div >
+				<my-action-search :handleSearch="onSearch" :showSearch="true" addText="添加员工" searchPlaceHolder="员工名字" :handleAdd="onAdd" :showAdd="true"></my-action-search>	
+			</div>
+			<Row class="margin-top-16">
 				<Spin fix v-show="loading"></Spin>
 	      <Table stripe ref="employeeTable" :columns="columns" :data="employees" border disabled-hover></Table>
 				<div class="pagi-wrapper">
@@ -93,9 +83,11 @@ import {
   deleteButton,
 	editButton
  } from '@/libs/buttons';
+import myActionSearch from '../my-components/myActionSearch'
 export default {
 	name: 'employee-index',
 	components: {
+		myActionSearch
 	},
 	watch: {
 	},
@@ -107,7 +99,6 @@ export default {
 			key:{
 				name:''
 			},
-			currentKey:{},
 			pageSize:10,
 			currentPage: 1,
 			total:0,
@@ -223,7 +214,7 @@ export default {
 			let params = {
 				per_page:this.pageSize,
 				page:this.currentPage,
-				name:this.currentKey.name
+				name:this.key.name
 			}
 			this.loading = true
 			api.getEmployees(params).then(res=>{
@@ -241,10 +232,10 @@ export default {
 			this.getEmployees()
 		},
 		//搜索
-		onSearch(){
+		onSearch(name){
 			//console.log(this.key)
 			this.currentPage = 1
-			this.currentKey.name = this.key.name
+			this.key.name = name
 			this.getEmployees()
 		},
 		initAction(){

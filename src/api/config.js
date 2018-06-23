@@ -5,9 +5,11 @@ import Vue from 'vue';
 
 const EventBus = new Vue();
 const currentHost = location.host;
+const nativeHost = 'http://10.10.10.118:8080'
+//const nativeHost = 'http://10.10.10.166:8011'
 console.log(env)
 const host =  env === 'development'
-    ?'http://10.10.10.118:8080'
+    ?nativeHost
     :currentHost === 'beta.admin.moscales.com'
     ?'http://beta.admin.moscales.com'
     :'http://moscales.7wenyi.com';

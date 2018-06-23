@@ -66,7 +66,7 @@ export default {
                     }
                     api.login(params).then(res=>{
                         console.log(res)
-                        if(res.code == 200){
+                        if(res){
                             this.$Message.success('登录成功');
                             Cookies.set('user', this.form.username);
                             Cookies.set('password', this.form.password);
@@ -74,9 +74,6 @@ export default {
                             this.$router.push({
                                 name: 'home_index'
                             });
-                        }else{
-                            this.$Message.error(res.msg);
-                            return
                         }
                     })
                 }

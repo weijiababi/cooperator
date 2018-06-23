@@ -25,3 +25,13 @@ export const delEmployee = params => { return $http.post(`/generalize_user/delet
 
 // 获取成员管理列表
 export const getUsers = params => { return $http.post(`/system_user/finds`, params).then(res => res.data)};
+
+/* 
+	 统计管理
+*/ 
+
+// 获取员工产出统计
+export const getStaffDayStatistic = params => { return $http.post(`/StaffStatistic/getStaffDayStatistic`, params).then(res => res.data)};
+
+// 获取员工设备产出统计
+export const getStaffDeviceDetail = params => { return $http.post(`/StaffStatistic/getStaffDeviceDetail`, params).then(res => res.data)};

@@ -52,6 +52,7 @@ export const otherRouter = {
     component: Main,
     children: [
         { path: 'home', title: {i18n: 'home'}, name: 'home_index', component: () => import('@/views/home/home.vue') },
+        { path: 'employeesDevice/:id', title: '设备列表', name: 'employees-device', component: () => import('@/views/statistics/employeesDevice.vue') },
     ]
 };
 
@@ -70,6 +71,29 @@ export const appRouter = [
                 title: '员工信息管理',
                 name: "employee-index",
                 component: () => import('@/views/employee/index.vue')
+            },
+            
+        ]
+    },
+    {
+        path: '/statistics',
+        icon: 'stats-bars',
+        name: 'statistics',
+        title: '统计管理',
+        component: Main,
+        children: [
+            {
+                path: 'employeesOutput',
+                icon: 'arrow-graph-up-right',
+                title: '员工产出统计',
+                name: "employees-output",
+                component: () => import('@/views/statistics/employeesOutput.vue')
+            // }, {
+            //     path: 'employeesOutput1',
+            //     icon: 'arrow-graph-up-right',
+            //     title: '员工产出统计',
+            //     name: "employees-output1",
+            //     component: () => import('@/views/statistics/employeesOutput.vue')
             },
             
         ]
