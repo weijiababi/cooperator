@@ -1,11 +1,10 @@
 import env from '../../build/env';
 import axios from 'axios';
-import router from '../router'
+import {router} from '../router'
 import Vue from 'vue';
-
 const EventBus = new Vue();
 const currentHost = location.host;
-const nativeHost = 'http://10.10.10.118:8080'
+const nativeHost = 'http://10.10.10.107:8080'
 //const nativeHost = 'http://10.10.10.166:8011'
 console.log(env)
 const host =  env === 'development'
@@ -32,7 +31,16 @@ $http.interceptors.response.use(res => {
 	let {code,data,msg} = res.data
 	if(code != 200){
 		EventBus.$Message.error(msg)
-		return
+    if(code == 10000){
+      if(router.currentRoute.query.redirect){
+        return {data:null};
+      }
+      router.replace({
+        name: 'login',
+        query: { redirect: router.currentRoute.fullPath}//登录成功后跳入浏览的当前页面
+      })
+    }
+		return {data:null};
 	}else{
 		return res.data;
 	}

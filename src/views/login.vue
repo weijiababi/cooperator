@@ -71,8 +71,10 @@ export default {
                             Cookies.set('user', this.form.username);
                             Cookies.set('password', this.form.password);
                             this.$store.commit('setAvator', 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3448484253,3685836170&fm=27&gp=0.jpg');
+                            let redirect = decodeURIComponent(this.$route.query.redirect || '/home');
+                            console.log(redirect)           
                             this.$router.push({
-                                name: 'home_index'
+                                path: redirect
                             });
                         }
                     })

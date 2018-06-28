@@ -108,9 +108,9 @@ export default {
 		}
 	},
 	created () {
-		// this.employeeId = this.$route.params.id
-		// this.employeeName = this.$route.query.name
-		// this.getStaffDeviceDetail()
+		this.employeeId = this.$route.params.id
+		this.employeeName = this.$route.query.name
+		this.getStaffDeviceDetail()
 	},
 	activated () {
 		if(this.employeeId != this.$route.params.id){
