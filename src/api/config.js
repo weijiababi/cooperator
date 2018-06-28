@@ -4,10 +4,9 @@ import {router} from '../router'
 import Vue from 'vue';
 const EventBus = new Vue();
 const currentHost = location.host;
-const nativeHost = 'http://10.10.10.107:8080'
-//const nativeHost = 'http://10.10.10.166:8011'
+const nativeHost = 'http://moscales.admin.com:8080'
 console.log(env)
-const host =  env === 'development'
+const host =  env === 'development'||currentHost === 'moscales.admin.com'
     ?nativeHost
     :currentHost === 'beta.admin.moscales.com'
     ?'http://beta.admin.moscales.com'
