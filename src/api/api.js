@@ -35,3 +35,23 @@ export const getStaffDayStatistic = params => { return $http.post(`/StaffStatist
 
 // 获取员工设备产出统计
 export const getStaffDeviceDetail = params => { return $http.post(`/StaffStatistic/getStaffDeviceDetail`, params).then(res => res.data)};
+
+/* 
+	店铺管理
+*/ 
+
+// 获取店铺列表
+export const getStores = params => { return $http.post(`/shopinfo/finds`, params).then(res => res.data)};
+
+// 获取店铺详情
+export const getStoreDetail = params => { return $http.post(`/shopinfo/detail`, params).then(res => res.data)};
+
+// 修改店铺负责人
+export const editSystemUser = params => { return $http.post(`/shopinfo/editSystemUser`, params).then(res => res.data)};
+
+/* 
+	账号管理
+*/ 
+
+// 获取账号列表
+export const getSystemUser = params => { return $http.post(`/systemUser/finds`, params).then(res => res.data)};

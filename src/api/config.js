@@ -3,9 +3,9 @@ import axios from 'axios';
 import {router} from '../router'
 import Vue from 'vue';
 const EventBus = new Vue();
-const currentHost = location.host;
-const nativeHost = 'http://moscales.admin.com:8080'
-console.log(env)
+const currentHost = location.hostname;
+const nativeHost = 'http://moscales.admin.com'
+console.log(env,currentHost)
 const host =  env === 'development'||currentHost === 'moscales.admin.com'
     ?nativeHost
     :currentHost === 'beta.admin.moscales.com'

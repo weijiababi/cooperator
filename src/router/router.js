@@ -97,7 +97,24 @@ export const appRouter = [
             },
             
         ]
-    }
+    },
+    {
+        path: '/store',
+        icon: 'ios-home',
+        name: 'store',
+        title: '店铺管理',
+        component: Main,
+        children: [
+            {
+                path: 'index',
+                icon: 'ios-home',
+                title: '店铺管理',
+                name: "store-index",
+                component: () => import('@/views/store/index.vue')
+            },
+            
+        ]
+    },
   
 ];
 

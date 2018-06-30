@@ -11,16 +11,19 @@
         <Col style="width: 57px; float:right;" v-show="showSearch">
             <Button  type="primary"  @click="onSearch" >搜索</Button>
         </Col>
-        <Col span="5" style="margin-right: 16px;float: right;" v-show="showSearch">
+        <Col span="4" style="margin-right: 16px;float: right;" v-show="showSearch">
             <Input v-model.trim="searchConName" @on-change="" 
             :placeholder="searchPlaceHolder" />
         </Col>
-        <Col span="5" style="margin-right: 16px;float: right;">       
+        <Col span="4" style="margin-right: 16px;float: right;">       
             <slot name="twoSearch"></slot>      
         </Col>    
-         <Col span="5" style="margin-right: 16px;float: right;">       
+         <Col span="4" style="margin-right: 16px;float: right;">       
             <slot name="threeSearch"></slot>      
         </Col> 
+        <Col span="4" style="margin-right: 16px;float: right;">       
+            <slot name="fourSearch"></slot>      
+        </Col>
         <Col style="width: 100px;margin-right: 16px;float: right;">       
             <slot name="searchOption"></slot>      
         </Col>     
